@@ -2,16 +2,16 @@
 
 namespace app\controllers;
 
+use app\models\lpu_section\LpuSection;
 use app\models\ward\Ward;
 use app\models\ward\WardSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * WardController implements the CRUD actions for Ward model.
  */
-class WardController extends Controller
+class WardController extends BaseController
 {
     /**
      * @inheritDoc
@@ -36,14 +36,16 @@ class WardController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($parentId)
     {
         $searchModel = new WardSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($parentId, $this->request->queryParams);
+        $lpuSection = LpuSection::findOne(['id' => $parentId]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'lpuSection' => $lpuSection
         ]);
     }
 
@@ -65,13 +67,14 @@ class WardController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($parentId)
     {
         $model = new Ward();
+        $model->id_lpu_section = $parentId;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['lpu-section/view', 'id' => $parentId]);
             }
         } else {
             $model->loadDefaultValues();

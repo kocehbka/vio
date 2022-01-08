@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\lpu_section\LpuSection */
 
-$this->title = 'Create Lpu Section';
-$this->params['breadcrumbs'][] = ['label' => 'Lpu Sections', 'url' => ['index']];
+$this->title = 'Создать отделение';
+$this->params['breadcrumbs'][] = ['label' => 'Отделения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lpu-section-create">

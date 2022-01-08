@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ward\WardSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Wards';
+$this->title = 'Палаты отделения ' . $lpuSection->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ward-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Ward', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать палату', ['ward/create/' . $lpuSection->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Ward $model, $key, $index, $column) {
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

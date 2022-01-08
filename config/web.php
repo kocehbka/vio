@@ -17,6 +17,7 @@ $config = [
             'cookieValidationKey' => 'QsQceQPbrSfY4SYFxBSkhOTZLwoKuU8a',
             'baseUrl' => ''
         ],
+        'language'=>'ru-RU',
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -49,6 +50,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                '<controller:\w+>/<parentId:\d+>/' => '<controller>/index',
+                '<controller:\w+>/<action:\w+>/<parentId:\d+>/' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],

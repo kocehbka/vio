@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\patient\PatientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Patients';
+$this->title = 'Пациенты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="patient-index">
@@ -17,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Patient', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Новый пациент', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,15 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'patronymic',
             'birthday',
-            //'gender',
-            //'passport_seria',
-            //'passport_number',
-            //'passport_date',
-            //'passport_issued_by',
-            //'address',
-            //'snils',
-            //'created_at',
-            //'updated_at',
+            'gender',
+            /*'passport_seria',
+            'passport_number',
+            'passport_date',
+            'passport_issued_by',
+            'address',
+            'snils',
+            'created_at',
+            'updated_at',*/
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Patient $model, $key, $index, $column) {

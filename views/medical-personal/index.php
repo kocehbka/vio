@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\medical_personal\MedicalPersonalSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Medical Personals';
+$this->title = 'Врачи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="medical-personal-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Medical Personal', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Новый врач', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

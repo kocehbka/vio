@@ -4,14 +4,13 @@ namespace app\controllers;
 
 use app\models\medical_personal\MedicalPersonal;
 use app\models\medical_personal\MedicalPersonalSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * MedicalPersonalController implements the CRUD actions for MedicalPersonal model.
  */
-class MedicalPersonalController extends Controller
+class MedicalPersonalController extends BaseController
 {
     /**
      * @inheritDoc

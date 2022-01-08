@@ -45,13 +45,13 @@ class MedicalCard extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_patient' => 'Id Patient',
-            'id_policy' => 'Id Policy',
-            'is_pay' => 'Is Pay',
-            'id_leave_base' => 'Id Leave Base',
-            'diagnosis' => 'Diagnosis',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id_patient' => 'Пациент',
+            'id_policy' => 'Полис пациента',
+            'is_pay' => 'Платные услуги',
+            'id_leave_base' => 'Выписан',
+            'diagnosis' => 'Диагноз',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

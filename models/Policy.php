@@ -44,10 +44,10 @@ class Policy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'policy_type' => 'Policy Type',
-            'number' => 'Number',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'policy_type' => 'Тип полиса',
+            'number' => 'Сирия Номер/Номер',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

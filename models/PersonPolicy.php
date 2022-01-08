@@ -42,10 +42,10 @@ class PersonPolicy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_person' => 'Id Person',
-            'id_policy' => 'Id Policy',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id_person' => 'Пациент',
+            'id_policy' => 'Идентификатор полиса',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

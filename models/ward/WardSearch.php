@@ -38,7 +38,7 @@ class WardSearch extends Ward
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($lpuSectionId, $params)
     {
         $query = Ward::find();
 
@@ -59,7 +59,7 @@ class WardSearch extends Ward
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_lpu_section' => $this->id_lpu_section,
+            'id_lpu_section' => $lpuSectionId,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

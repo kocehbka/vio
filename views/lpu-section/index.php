@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\lpu_section\LpuSectionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Lpu Sections';
+$this->title = 'Отделения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lpu-section-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Lpu Section', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать отделение', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -31,11 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'created_at',
-            'updated_at',
+            [
+            	'value' => function ($data) {
+    				return Yii::t('app', Yii::$app->formatter->asDateTime($data->created_at));
+				}
+			],
+            [
+                'value' => function ($data) {
+                    return Yii::t('app', $data->updated_at ? Yii::$app->formatter->asDateTime($data->updated_at) : NULL);
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, LpuSection $model, $key, $index, $column) {
+				//'template' => '{delete} {update}',
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
+
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

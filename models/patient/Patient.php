@@ -55,19 +55,19 @@ class Patient extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'lastname' => 'Lastname',
-            'name' => 'Name',
-            'patronymic' => 'Patronymic',
-            'birthday' => 'Birthday',
-            'gender' => 'Gender',
-            'passport_seria' => 'Passport Seria',
-            'passport_number' => 'Passport Number',
-            'passport_date' => 'Passport Date',
-            'passport_issued_by' => 'Passport Issued By',
-            'address' => 'Address',
-            'snils' => 'Snils',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'lastname' => 'Фамилия',
+            'name' => 'Имя',
+            'patronymic' => 'Отчество',
+            'birthday' => 'Дата рождения',
+            'gender' => 'Пол',
+            'passport_seria' => 'Серия паспорта',
+            'passport_number' => 'Номер паспорта',
+            'passport_date' => 'Дата выдачи',
+            'passport_issued_by' => 'Кем выдан',
+            'address' => 'Адрес проживания',
+            'snils' => 'СНИЛС',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

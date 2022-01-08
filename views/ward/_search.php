@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="ward-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['ward/index'],
         'method' => 'get',
         'options' => [
             'data-pjax' => 1

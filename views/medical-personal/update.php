@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\medical_personal\MedicalPersonal */
 
-$this->title = 'Update Medical Personal: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Medical Personals', 'url' => ['index']];
+$this->title = 'Редактировать врача: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Врачи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

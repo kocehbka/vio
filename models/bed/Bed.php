@@ -41,10 +41,10 @@ class Bed extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_ward' => 'Id Ward',
-            'number' => 'Number',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id_ward' => 'Идентификатор палаты',
+            'number' => 'Номер палаты',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

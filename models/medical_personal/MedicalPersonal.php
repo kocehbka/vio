@@ -47,14 +47,14 @@ class MedicalPersonal extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
-            'lastname' => 'Lastname',
-            'name' => 'Name',
-            'patronymic' => 'Patronymic',
-            'specialty' => 'Specialty',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'lastname' => 'Фамилия',
+            'name' => 'Имя',
+            'patronymic' => 'Отчество',
+            'specialty' => 'Специальность врача',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредактировано',
         ];
     }
 }

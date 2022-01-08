@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\lpu_section\LpuSection */
 
-$this->title = 'Update Lpu Section: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Lpu Sections', 'url' => ['index']];
+$this->title = 'Редактировать отделение: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Отделения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="lpu-section-update">
 

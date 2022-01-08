@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ward\Ward */
 
-$this->title = 'Create Ward';
-$this->params['breadcrumbs'][] = ['label' => 'Wards', 'url' => ['index']];
+$this->title = 'Создать палату';
+$this->params['breadcrumbs'][] = ['label' => 'Палаты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ward-create">

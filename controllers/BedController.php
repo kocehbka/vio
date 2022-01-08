@@ -4,14 +4,13 @@ namespace app\controllers;
 
 use app\models\bed\Bed;
 use app\models\bed\BedSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * BedController implements the CRUD actions for Bed model.
  */
-class BedController extends Controller
+class BedController extends BaseController
 {
     /**
      * @inheritDoc

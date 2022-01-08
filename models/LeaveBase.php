@@ -42,11 +42,11 @@ class LeaveBase extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_patient' => 'Id Patient',
-            'id_leave_base_reason' => 'Id Leave Base Reason',
-            'id_lpu_section' => 'Id Lpu Section',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'id_patient' => 'Идентификатор пациента',
+            'id_leave_base_reason' => 'Причина выписки',
+            'id_lpu_section' => 'Отделение',
+            'created_at' => 'Создано',
+            'updated_at' => 'Отредкатировано',
         ];
     }
 }

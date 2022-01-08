@@ -4,14 +4,14 @@ namespace app\controllers;
 
 use app\models\lpu_section\LpuSection;
 use app\models\lpu_section\LpuSectionSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * LpuSectionController implements the CRUD actions for LpuSection model.
  */
-class LpuSectionController extends Controller
+class LpuSectionController extends BaseController
 {
     /**
      * @inheritDoc
@@ -27,6 +27,14 @@ class LpuSectionController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+                'timestamp' => [
+                    'class' => TimestampBehavior::className(),
+                    'attributes' => [
+                        \yii\db\BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                        \yii\db\BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+
+                    ],
+                ]
             ]
         );
     }
@@ -58,12 +66,9 @@ class LpuSectionController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render(
-            'view',
-            [
-                'model' => $this->findModel($id),
-            ]
-        );
+        $controller = \Yii::$app->createController('ward');
+        $action = $controller[0]->createAction('index');
+        return $action->runWithParams(['parentId' => $id]);
     }
 
     /**
