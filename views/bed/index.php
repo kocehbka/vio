@@ -6,10 +6,12 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
+/* @var $ward app\models\ward\Ward */
+/* @var $lpuSection app\models\lpu_section\LpuSection */
 /* @var $searchModel app\models\bed\BedSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Beds';
+$this->title = 'Койкоместа палаты ' .  $ward->name . ' отделения ' . $lpuSection->name;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bed-index">
@@ -17,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Bed', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать койкоместо', ['bed/create/' . $ward->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -30,14 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_ward',
             'number',
             'created_at',
             'updated_at',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Bed $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
+                    return Url::toRoute(['bed/' . $action, 'id' => $model->id]);
                  }
             ],
         ],

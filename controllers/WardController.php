@@ -57,9 +57,9 @@ class WardController extends BaseController
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $controller = \Yii::$app->createController('bed');
+        $action = $controller[0]->createAction('index');
+        return $action->runWithParams(['parentId' => $id]);
     }
 
     /**
@@ -71,6 +71,8 @@ class WardController extends BaseController
     {
         $model = new Ward();
         $model->id_lpu_section = $parentId;
+
+        $lpu = LpuSection::findOne(['id' => $parentId]); #убрать!! print_R($lpu->attributes);die();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -97,7 +99,7 @@ class WardController extends BaseController
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['lpu-section/view', 'id' => $model->id_lpu_section]);
         }
 
         return $this->render('update', [

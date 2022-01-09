@@ -2,8 +2,7 @@
 
 namespace app\models\lpu_section;
 
-use Yii;
-use yii\behaviors\TimestampBehavior;
+use app\models\BaseModel;
 
 /**
  * This is the model class for table "lpu_section".
@@ -13,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int|null $updated_at
  */
-class LpuSection extends \yii\db\ActiveRecord
+class LpuSection extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -21,23 +20,6 @@ class LpuSection extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'lpu_section';
-    }
-
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'timestamp' => [
-                    'class' => TimestampBehavior::className(),
-                    'attributes' => [
-                        \yii\db\BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
-                        \yii\db\BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-
-                    ]
-                ]
-            ]
-        );
     }
 
     /**

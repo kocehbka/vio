@@ -2,7 +2,8 @@
 
 namespace app\models\bed;
 
-use Yii;
+use app\models\BaseModel;
+use app\models\ward\Ward;
 
 /**
  * This is the model class for table "bed".
@@ -13,7 +14,7 @@ use Yii;
  * @property int $created_at
  * @property int|null $updated_at
  */
-class Bed extends \yii\db\ActiveRecord
+class Bed extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -29,9 +30,15 @@ class Bed extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_ward', 'number', 'created_at'], 'required'],
+            [['id_ward', 'number'], 'required'],
             [['id_ward', 'number', 'created_at', 'updated_at'], 'integer'],
         ];
+    }
+
+
+    public function getWard()
+    {
+        return $this->hasOne(Ward::class, ['id' => 'id_ward']);
     }
 
     /**

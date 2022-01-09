@@ -2,25 +2,23 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
- * This is the model class for table "person_policy".
+ * This is the model class for table "patient_policy".
  *
  * @property int $id
- * @property int $id_person
+ * @property int $id_patient
  * @property int $id_policy
  * @property int $created_at
  * @property int|null $updated_at
  */
-class PersonPolicy extends \yii\db\ActiveRecord
+class PatientPolicy extends BaseModel
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'person_policy';
+        return 'patient_policy';
     }
 
     /**
@@ -29,9 +27,9 @@ class PersonPolicy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_person', 'id_policy', 'created_at'], 'required'],
-            [['id_person', 'id_policy', 'created_at', 'updated_at'], 'integer'],
-            [['id_policy'], 'unique'],
+            [['id_patient', 'id_policy'], 'required'],
+            [['id_patient', 'id_policy', 'created_at', 'updated_at'], 'integer'],
+            ['id_policy', 'unique'],
         ];
     }
 
@@ -42,7 +40,7 @@ class PersonPolicy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_person' => 'Пациент',
+            'id_patient' => 'Пациент',
             'id_policy' => 'Идентификатор полиса',
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',

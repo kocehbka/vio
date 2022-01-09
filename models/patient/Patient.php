@@ -2,7 +2,7 @@
 
 namespace app\models\patient;
 
-use Yii;
+use app\models\BaseModel;
 
 /**
  * This is the model class for table "patient".
@@ -22,8 +22,14 @@ use Yii;
  * @property int $created_at
  * @property int|null $updated_at
  */
-class Patient extends \yii\db\ActiveRecord
+class Patient extends BaseModel
 {
+    const PATIENT_GENDERS = [
+        'male' => 'Мужской',
+        'female' => 'Женский',
+        'undefined' => 'Неопределённый'
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -38,7 +44,7 @@ class Patient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lastname', 'name', 'birthday', 'passport_seria', 'passport_number', 'passport_date', 'passport_issued_by', 'snils', 'created_at'], 'required'],
+            [['lastname', 'name', 'birthday', 'passport_seria', 'passport_number', 'passport_date', 'passport_issued_by', 'snils'], 'required'],
             [['birthday', 'passport_date'], 'safe'],
             [['gender'], 'string'],
             [['passport_seria', 'passport_number', 'created_at', 'updated_at'], 'integer'],
@@ -69,5 +75,10 @@ class Patient extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',
         ];
+    }
+
+    public static function getPatientGenders()
+    {
+        return self::PATIENT_GENDERS;
     }
 }

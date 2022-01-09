@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 /**
  * This is the model class for table "policy".
  *
@@ -13,8 +11,13 @@ use Yii;
  * @property int $created_at
  * @property int|null $updated_at
  */
-class Policy extends \yii\db\ActiveRecord
+class Policy extends BaseModel
 {
+    const POLICY_TYPES = [
+        'oms' => 'ОМС',
+        'dms' => 'ДМС'
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -29,11 +32,11 @@ class Policy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['policy_type'], 'string'],
-            [['number', 'created_at'], 'required'],
+            ['policy_type', 'string'],
+            ['number', 'required'],
             [['created_at', 'updated_at'], 'integer'],
-            [['number'], 'string', 'max' => 255],
-            [['number'], 'unique'],
+            ['number', 'string', 'max' => 255],
+            ['number', 'unique'],
         ];
     }
 
@@ -49,5 +52,10 @@ class Policy extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',
         ];
+    }
+
+    public static function getPolicyTypes()
+    {
+        return self::POLICY_TYPES;
     }
 }

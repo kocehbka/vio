@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\bed\Bed;
 use app\models\bed\BedSearch;
+use app\models\ward\Ward;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,14 +36,18 @@ class BedController extends BaseController
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($parentId)
     {
         $searchModel = new BedSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $ward = Ward::findOne(['id' => $parentId]);
+        $lpuSection = $ward->getLpuSection()->one();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'ward' => $ward,
+            'lpuSection' => $lpuSection
         ]);
     }
 
@@ -64,13 +69,14 @@ class BedController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($parentId)
     {
         $model = new Bed();
+        $model->id_ward = $parentId;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['ward/view', 'id' => $parentId]);
             }
         } else {
             $model->loadDefaultValues();
@@ -93,7 +99,7 @@ class BedController extends BaseController
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['ward/view', 'id' => $model->id_ward]);
         }
 
         return $this->render('update', [

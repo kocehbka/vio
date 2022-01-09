@@ -4,8 +4,10 @@ namespace app\controllers;
 
 use app\models\patient\Patient;
 use app\models\patient\PatientSearch;
+use app\models\PatientForm;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use ReflectionClass;
 
 /**
  * PatientController implements the CRUD actions for Patient model.
@@ -55,7 +57,7 @@ class PatientController extends BaseController
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id, true),
         ]);
     }
 
@@ -66,10 +68,11 @@ class PatientController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Patient();
+        $model = new PatientForm();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            $model->setScenario($model::SCENARIO_CREATE);
+            if ($model->load($this->request->post()) && $model->savePatient()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -122,9 +125,14 @@ class PatientController extends BaseController
      * @return Patient the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $forView = false)
     {
-        if (($model = Patient::findOne(['id' => $id])) !== null) {
+        if ($forView) {
+            $model = Patient::findOne(['id' => $id]);
+        } else {
+            $model = PatientForm::findModel($id);
+        }
+        if ($model !== null) {
             return $model;
         }
 

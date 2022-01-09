@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\bed\Bed */
 
-$this->title = 'Create Bed';
-$this->params['breadcrumbs'][] = ['label' => 'Beds', 'url' => ['index']];
+$this->title = 'Создать койкоместо';
+$this->params['breadcrumbs'][] = ['label' => 'Койкоместа', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bed-create">

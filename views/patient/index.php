@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',*/
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Patient $model, $key, $index, $column) {
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

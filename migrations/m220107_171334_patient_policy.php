@@ -3,11 +3,11 @@
 use yii\db\Migration;
 
 /**
- * Class m220107_171334_person_policy
+ * Class m220107_171334_patient_policy
  */
-class m220107_171334_person_policy extends Migration
+class m220107_171334_patient_policy extends Migration
 {
-    const TABLE_NAME = 'person_policy';
+    const TABLE_NAME = 'patient_policy';
 
     /**
      * {@inheritdoc}
@@ -20,7 +20,7 @@ class m220107_171334_person_policy extends Migration
         }
         $this->createTable(self::TABLE_NAME, [
             'id' => $this->primaryKey(),
-            'id_person' => $this->integer()->notNull(),
+            'id_patient' => $this->integer()->notNull(),
             'id_policy' => $this->integer()->notNull()->unique(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->null()

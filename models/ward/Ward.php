@@ -2,9 +2,8 @@
 
 namespace app\models\ward;
 
+use app\models\BaseModel;
 use app\models\lpu_section\LpuSection;
-use Yii;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "ward".
@@ -15,7 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int|null $updated_at
  */
-class Ward extends \yii\db\ActiveRecord
+class Ward extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -23,23 +22,6 @@ class Ward extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'ward';
-    }
-
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'timestamp' => [
-                    'class' => TimestampBehavior::className(),
-                    'attributes' => [
-                        \yii\db\BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
-                        \yii\db\BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-
-                    ]
-                ]
-            ]
-        );
     }
 
     /**
