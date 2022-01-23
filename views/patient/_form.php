@@ -7,7 +7,7 @@ use app\models\patient\Patient;
 use app\models\Policy;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\patient\Patient */
+/* @var $model app\models\PatientForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

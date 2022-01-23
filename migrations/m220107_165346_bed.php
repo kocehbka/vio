@@ -22,6 +22,7 @@ class m220107_165346_bed extends Migration
             'id' => $this->primaryKey(),
             'id_ward' => $this->integer()->notNull(),
             'number' => $this->integer()->notNull(),
+            'id_patient' => $this->integer()->null(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->null()
         ], $tableOptions);

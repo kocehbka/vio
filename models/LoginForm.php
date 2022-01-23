@@ -2,13 +2,14 @@
 
 namespace app\models;
 
+use app\models\medical_personal\MedicalPersonal;
 use Yii;
 use yii\base\Model;
 
 /**
  * LoginForm is the model behind the login form.
  *
- * @property-read User|null $user
+ * @property-read MedicalPersonal|null $user
  *
  */
 class LoginForm extends Model
@@ -66,14 +67,14 @@ class LoginForm extends Model
     }
 
     /**
-     * Finds user by [[username]]
+     * Finds user by [[login]]
      *
-     * @return User|null
+     * @return MedicalPersonal|null
      */
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = MedicalPersonal::findByUsername($this->username);
         }
 
         return $this->_user;

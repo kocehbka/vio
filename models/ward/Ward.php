@@ -49,7 +49,7 @@ class Ward extends BaseModel
         return [
             'id' => 'ID',
             'id_lpu_section' => 'ID отделения',
-            'name' => 'Номер',
+            'name' => 'Номер палаты',
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',
         ];

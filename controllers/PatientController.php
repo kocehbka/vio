@@ -8,6 +8,7 @@ use app\models\PatientForm;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use ReflectionClass;
+use Yii;
 
 /**
  * PatientController implements the CRUD actions for Patient model.
@@ -73,7 +74,7 @@ class PatientController extends BaseController
         if ($this->request->isPost) {
             $model->setScenario($model::SCENARIO_CREATE);
             if ($model->load($this->request->post()) && $model->savePatient()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -94,9 +95,9 @@ class PatientController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario($model::SCENARIO_UPDATE);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->savePatient()) {
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -118,6 +119,14 @@ class PatientController extends BaseController
         return $this->redirect(['index']);
     }
 
+    public function actionHospitalize($id)
+    {
+        $session = Yii::$app->session;
+        $session->set('patient_id', $id);
+
+        return $this->redirect('/lpu-section');
+    }
+
     /**
      * Finds the Patient model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -130,7 +139,7 @@ class PatientController extends BaseController
         if ($forView) {
             $model = Patient::findOne(['id' => $id]);
         } else {
-            $model = PatientForm::findModel($id);
+            $model = PatientForm::findModel($id, PatientForm::SCENARIO_UPDATE);
         }
         if ($model !== null) {
             return $model;

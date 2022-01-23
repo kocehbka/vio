@@ -5,37 +5,13 @@ namespace app\models;
 use app\models\patient\Patient;
 use Yii;
 
-class PatientForm extends \yii\base\Model
+class HospitalizeForm extends \yii\base\Model
 {
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
 
-    public $id;
-    public $lastname;
-    public $name;
-    public $patronymic;
-    public $birthday;
-    public $gender;
-    public $passport_seria;
-    public $passport_number;
-    public $passport_date;
-    public $passport_issued_by;
-    public $address;
-    public $snils;
-    public $policy_type;
-    public $policy_number;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_CREATE] = $scenarios[self::SCENARIO_UPDATE] = $this->attributes();
-        unset($scenarios[self::SCENARIO_CREATE][array_search('id',$scenarios[self::SCENARIO_CREATE])]);
-
-        return $scenarios;
-    }
+    public $id_patient;
+    public $id_bed;
 
     /**
      * {@inheritdoc}
@@ -127,6 +103,7 @@ class PatientForm extends \yii\base\Model
         if (($patient = Patient::findOne(['id' => $patientId])) !== null) {
             $model = new static;
             $model->setScenario($scenario);
+            //print_R($patient->attributes);
             $model->setAttributes($patient->attributes);
             $policy = (new \yii\db\Query())
                 ->select(['policy.policy_type', 'policy.number'])

@@ -30,17 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'login',
-            'password',
+            'username',
             'lastname',
             'name',
-            //'patronymic',
-            //'specialty',
-            //'created_at',
-            //'updated_at',
+            'patronymic',
+            'specialty',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, MedicalPersonal $model, $key, $index, $column) {
+                'template' => '{view} {delete}',
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

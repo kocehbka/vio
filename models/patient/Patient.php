@@ -3,6 +3,8 @@
 namespace app\models\patient;
 
 use app\models\BaseModel;
+use app\models\MedicalCard;
+use app\models\PatientPolicy;
 
 /**
  * This is the model class for table "patient".
@@ -75,6 +77,21 @@ class Patient extends BaseModel
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',
         ];
+    }
+
+    public function getMedicalCard()
+    {
+        return $this->hasMany(MedicalCard::class, ['id_patient' => 'id']);
+    }
+
+    public function getActiveMedicalCard()
+    {
+        return $this->hasMany(MedicalCard::class, ['id_patient' => 'id'])->where(['id_leave_base' => null]);
+    }
+
+    public function getBed()
+    {
+        return $this->hasOne(Bed::class, ['id_patient' => 'id', 'is_leave_base' => 0]);
     }
 
     public static function getPatientGenders()

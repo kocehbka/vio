@@ -49,7 +49,7 @@ class Bed extends BaseModel
         return [
             'id' => 'ID',
             'id_ward' => 'Идентификатор палаты',
-            'number' => 'Номер палаты',
+            'number' => 'Номер койкоместа',
             'created_at' => 'Создано',
             'updated_at' => 'Отредактировано',
         ];

@@ -11,6 +11,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
 AppAsset::register($this);
+//print_R(Yii::$app->user->isGuest); die('!');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

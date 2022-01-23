@@ -9,10 +9,33 @@ use yii\widgets\Pjax;
 /* @var $ward app\models\ward\Ward */
 /* @var $lpuSection app\models\lpu_section\LpuSection */
 /* @var $searchModel app\models\bed\BedSearch */
+/* @var $id_patient int|null */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Койкоместа палаты ' .  $ward->name . ' отделения ' . $lpuSection->name;
 $this->params['breadcrumbs'][] = $this->title;
+
+$buttons = ($id_patient) ? [
+                'hospitalize' => function ($url, $model, $key) {
+                    $iconName = "plus";
+
+                    $title = \Yii::t('yii', 'Поместить на койкоместо');
+
+                    $id = 'info-'.$key;
+                    $options = [
+                        'title' => $title,
+                        'aria-label' => $title,
+                        'data-pjax' => '0',
+                        'id' => $id
+                    ];
+
+                    $url = Url::to(['bed/hospitalize', 'id' => $key]);
+                    $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
+
+                    return Html::a($icon, $url, $options);
+                }
+            ] : [];
+
 ?>
 <div class="bed-index">
 
@@ -37,6 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view} {hospitalize} {update} {delete}',
+                'buttons' => $buttons,
                 'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute(['bed/' . $action, 'id' => $model->id]);
                  }

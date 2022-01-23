@@ -17,8 +17,8 @@ class MedicalPersonalSearch extends MedicalPersonal
     public function rules()
     {
         return [
-            [['id', 'login', 'created_at', 'updated_at'], 'integer'],
-            [['password', 'lastname', 'name', 'patronymic', 'specialty'], 'safe'],
+            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'lastname', 'name', 'patronymic', 'specialty'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class MedicalPersonalSearch extends MedicalPersonal
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'login' => $this->login,
+            'username' => $this->username,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

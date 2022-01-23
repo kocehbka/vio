@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\medical_personal\MedicalPersonal */
 
-$this->title = $model->name;
+$this->title = 'Врач ' . $model->lastname . ' ' . $model->name . ' ' . $model->patronymic;
 $this->params['breadcrumbs'][] = ['label' => 'Врачи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -30,8 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'login',
-            'password',
+            'username',
             'lastname',
             'name',
             'patronymic',

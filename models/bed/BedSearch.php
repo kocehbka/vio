@@ -37,7 +37,7 @@ class BedSearch extends Bed
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($wardId, $params)
     {
         $query = Bed::find();
 
@@ -58,7 +58,7 @@ class BedSearch extends Bed
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_ward' => $this->id_ward,
+            'id_ward' => $wardId,
             'number' => $this->number,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -45,6 +45,49 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',*/
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view} {hospitalize} {discharge} {update} {delete}',
+                'buttons' => [
+                    'hospitalize' => function ($url, $model, $key) {
+                        $iconName = "plus";
+
+                        $title = \Yii::t('yii', 'Поместить в отделение');
+
+                        $id = 'info-'.$key;
+                        $options = [
+                            'title' => $title,
+                            'aria-label' => $title,
+                            'data-pjax' => '0',
+                            'id' => $id
+                        ];
+
+                        $url = Url::current(['hospitalize', 'id' => $key]);
+                        $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
+
+                        return Html::a($icon, $url, $options);
+                    },
+                    'discharge' => function ($url, $model, $key) {
+                        if(!$model->getActiveMedicalCard()->count()) {
+                            return false;
+                        }
+
+                        $iconName = "minus";
+
+                        $title = \Yii::t('yii', 'Выписать из отделения');
+
+                        $id = 'info-'.$key;
+                        $options = [
+                            'title' => $title,
+                            'aria-label' => $title,
+                            'data-pjax' => '0',
+                            'id' => $id
+                        ];
+
+                        $url = Url::current(['', 'id' => $key]);
+                        $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-$iconName"]);
+
+                        return Html::a($icon, $url, $options);
+                    }
+                ],
                 'urlCreator' => function ($action, $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

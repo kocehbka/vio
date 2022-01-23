@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use app\models\bed\Bed;
 use app\models\bed\BedSearch;
+use app\models\patient\Patient;
 use app\models\ward\Ward;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * BedController implements the CRUD actions for Bed model.
@@ -38,8 +40,11 @@ class BedController extends BaseController
      */
     public function actionIndex($parentId)
     {
+        $session = \Yii::$app->session;
+        $id_patient = $session->get('patient_id');
+
         $searchModel = new BedSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider = $searchModel->search($parentId, $this->request->queryParams);
         $ward = Ward::findOne(['id' => $parentId]);
         $lpuSection = $ward->getLpuSection()->one();
 
@@ -47,7 +52,8 @@ class BedController extends BaseController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'ward' => $ward,
-            'lpuSection' => $lpuSection
+            'lpuSection' => $lpuSection,
+            'id_patient' => $id_patient
         ]);
     }
 
@@ -119,6 +125,16 @@ class BedController extends BaseController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionHospitalize($id)
+    {
+        $session = \Yii::$app->session;
+        $id_patient = $session->get('patient_id');
+        if($id_patient) {
+            //$transaction = Yii::$app->db->beginTransaction();
+
+        }
     }
 
     /**

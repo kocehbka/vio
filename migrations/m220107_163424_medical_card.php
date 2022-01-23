@@ -25,6 +25,7 @@ class m220107_163424_medical_card extends Migration
             'is_pay' => $this->boolean(),
             'id_leave_base' => $this->integer()->null(),
             'diagnosis' => $this->string()->notNull(),
+            'id_bed' => $this->integer()->null(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->null()
         ], $tableOptions);

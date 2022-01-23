@@ -20,12 +20,14 @@ class m220107_160021_medical_personal extends Migration
         }
         $this->createTable(self::TABLE_NAME, [
             'id' => $this->primaryKey(),
-            'login' => $this->integer()->notNull()->unique(),
+            'username' => $this->string()->notNull()->unique(),
             'password' => $this->string()->notNull(),
             'lastname' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'patronymic' => $this->string()->null(),
             'specialty' => $this->string()->notNull(),
+            'auth_key' => $this->string()->notNull(),
+            'access_token' => $this->string()->null(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->null()
         ], $tableOptions);
